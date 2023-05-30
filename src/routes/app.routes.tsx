@@ -3,10 +3,10 @@ import {View} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import SvgUri from 'react-native-svg-uri';
 
-import {Home} from '../pages/Home';
 import {Trade} from '../pages/Trade';
 import {Portfolio} from '../pages/Portfolio';
 import colors from '../styles/colors';
+import {HomeRoutes} from './home.routes';
 
 interface TabIconProps {
   size: number;
@@ -36,9 +36,10 @@ export function AppRoutes() {
         tabBarInactiveTintColor: colors.text_dark,
       }}>
       <AppTab.Screen
-        name="Home"
-        component={Home}
+        name="HomeRoutes"
+        component={HomeRoutes}
         options={{
+          title: 'Home',
           headerShown: false,
           tabBarIcon: ({size, color}) => (
             <TabIcon size={size} color={color} icon={HomeIcon} />
