@@ -13,4 +13,6 @@ export default {
   text_dark: '#000000',
 
   red: '#c53030',
+
+  border_color: '#E6E6E6',
 };
