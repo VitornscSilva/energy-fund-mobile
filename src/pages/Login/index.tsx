@@ -11,6 +11,8 @@ import {UnderlineText} from '../../components/UnderlineText';
 import getValidationErrors from '../../utils/getValidationErrors';
 import {Container, CreateAccount, CreateAccountText, Title} from './styles';
 import CustomInput from '../../components/Input';
+import {useDispatch} from 'react-redux';
+import {signInRequest} from '../../store/modules/auth/actions';
 
 interface SignInFormData {
   email: string;
@@ -20,7 +22,9 @@ interface SignInFormData {
 export function Login(): JSX.Element {
   const formRef = useRef<FormHandles>(null);
   const passwordInputRef = useRef<TextInput>(null);
+
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const handleSignIn = useCallback(
     async (data: SignInFormData) => {
@@ -39,8 +43,7 @@ export function Login(): JSX.Element {
         await schema.validate(data, {
           abortEarly: false,
         });
-
-        navigation.navigate('App');
+        await dispatch(signInRequest(data));
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
@@ -51,7 +54,7 @@ export function Login(): JSX.Element {
         }
       }
     },
-    [navigation],
+    [dispatch],
   );
 
   return (

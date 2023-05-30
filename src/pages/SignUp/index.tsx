@@ -2,6 +2,7 @@ import {useNavigation} from '@react-navigation/core';
 import React, {useCallback, useRef} from 'react';
 import {View, KeyboardAvoidingView, Platform} from 'react-native';
 import {ScrollView, TextInput} from 'react-native-gesture-handler';
+import {useDispatch} from 'react-redux';
 import {Form} from '@unform/mobile';
 import {FormHandles} from '@unform/core';
 import * as Yup from 'yup';
@@ -11,8 +12,11 @@ import {UnderlineText} from '../../components/UnderlineText';
 import getValidationErrors from '../../utils/getValidationErrors';
 import {Container, HaveAccount, HaveAccountText, Title} from './styles';
 import CustomInput from '../../components/Input';
+import {signUpRequest} from '../../store/modules/auth/actions';
 
-interface SignInFormData {
+interface SignUpFormData {
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
 }
@@ -21,9 +25,10 @@ export function SignUp(): JSX.Element {
   const formRef = useRef<FormHandles>(null);
   const passwordInputRef = useRef<TextInput>(null);
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const handleSignIn = useCallback(
-    async (data: SignInFormData) => {
+    async (data: SignUpFormData) => {
       try {
         formRef.current?.setErrors({});
 
@@ -42,7 +47,7 @@ export function SignUp(): JSX.Element {
           abortEarly: false,
         });
 
-        navigation.navigate('Login');
+        await dispatch(signUpRequest(data));
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
@@ -53,7 +58,7 @@ export function SignUp(): JSX.Element {
         }
       }
     },
-    [navigation],
+    [dispatch],
   );
 
   return (
