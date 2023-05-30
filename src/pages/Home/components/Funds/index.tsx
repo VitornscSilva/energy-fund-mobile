@@ -14,13 +14,56 @@ const NaturalIcon = require('../../../../assets/natural-food.png');
 
 const UpIcon = require('../../../../assets/up.png');
 const DownIcon = require('../../../../assets/down.png');
+interface Fund {
+  name?: string;
+  abbr?: string;
+  currentPrice?: string;
+  increasement?: number;
+  chartData?: number[];
+  infoStats?: {
+    aum?: string;
+    issueData?: string;
+    vintageRange?: string;
+    ter?: string;
+    priceAtClose?: string;
+    priceAtOpen?: string;
+  };
+  portfolio?: {
+    credits?: number;
+    amount?: string;
+    lastPurchase?: string;
+    increasement?: number;
+    retiredCredits?: number;
+  };
+  isPositive?: boolean;
+}
 
-export function Funds() {
-  const data = [20, 180, 100, 140, 35, 25, 45, 30, 60];
-  const upData = [20, 180, 100, 140, 35, 25, 45, 30, 60];
-  const downData = data.reverse();
+interface FundsProps {
+  funds: Fund[];
+}
 
+const FundsIcons = {
+  'Wind Fund': WindIcon,
+  'Solar Fund': SolarIcon,
+  'Natural Fund': NaturalIcon,
+};
+
+export function Funds({funds}: FundsProps) {
   const navigation = useNavigation();
+
+  const verifyColor = (fund: Fund) => {
+    if (!fund?.isPositive) {
+      return colors.red;
+    }
+    return colors.green;
+  };
+
+  const verifyArrowIcon = (fund: Fund) => {
+    if (!fund?.isPositive) {
+      return DownIcon;
+    }
+    return UpIcon;
+  };
 
   return (
     <Container>
@@ -37,57 +80,29 @@ export function Funds() {
           gap: 15,
           paddingRight: 20,
         }}>
-        <FundCardContainer onPress={() => navigation.navigate('AssetDetails')}>
-          <Image source={WindIcon} />
-          <FundCardText type="title">Wind Fund</FundCardText>
-          <LineChart
-            style={{flex: 1, width: '80%'}}
-            data={upData}
-            svg={{stroke: colors.green, strokeWidth: 2}}
-            contentInset={{top: 5, bottom: 15}}
-            curve={shape.curveNatural}
-          />
-          <View style={{flexDirection: 'row', gap: 5}}>
-            <FundCardText>$1032.23</FundCardText>
-            <FundCardText color={colors.green}>
-              <Image source={UpIcon} /> 3.51%
-            </FundCardText>
-          </View>
-        </FundCardContainer>
-        <FundCardContainer>
-          <Image source={SolarIcon} />
-          <FundCardText type="title">Solar Fund</FundCardText>
-          <LineChart
-            style={{flex: 1, width: '80%'}}
-            data={downData}
-            svg={{stroke: colors.red, strokeWidth: 2}}
-            contentInset={{top: 5, bottom: 15}}
-            curve={shape.curveNatural}
-          />
-          <View style={{flexDirection: 'row', gap: 5}}>
-            <FundCardText>$986.61</FundCardText>
-            <FundCardText color={colors.red}>
-              <Image source={DownIcon} /> 0.13%
-            </FundCardText>
-          </View>
-        </FundCardContainer>
-        <FundCardContainer>
-          <Image source={NaturalIcon} />
-          <FundCardText type="title">Natural Fund</FundCardText>
-          <LineChart
-            style={{flex: 1, width: '80%'}}
-            data={downData}
-            svg={{stroke: colors.green, strokeWidth: 2}}
-            contentInset={{top: 5, bottom: 15}}
-            curve={shape.curveNatural}
-          />
-          <View style={{flexDirection: 'row', gap: 5}}>
-            <FundCardText>$1122.95</FundCardText>
-            <FundCardText color={colors.green}>
-              <Image source={UpIcon} /> 5%
-            </FundCardText>
-          </View>
-        </FundCardContainer>
+        {funds?.map(fund => (
+          <FundCardContainer
+            onPress={() => navigation.navigate('AssetDetails', {fund})}>
+            <Image source={FundsIcons[fund?.name]} />
+            <FundCardText type="title">{fund?.name}</FundCardText>
+            <LineChart
+              style={{flex: 1, width: '80%'}}
+              data={fund?.chartData}
+              svg={{
+                stroke: verifyColor(fund),
+                strokeWidth: 2,
+              }}
+              contentInset={{top: 5, bottom: 15}}
+              curve={shape.curveNatural}
+            />
+            <View style={{flexDirection: 'row', gap: 5}}>
+              <FundCardText>{fund?.currentPrice}</FundCardText>
+              <FundCardText color={verifyColor(fund)}>
+                <Image source={verifyArrowIcon(fund)} /> {fund?.increasement}%
+              </FundCardText>
+            </View>
+          </FundCardContainer>
+        ))}
       </ScrollView>
     </Container>
   );
