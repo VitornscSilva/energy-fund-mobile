@@ -1,5 +1,4 @@
 import React from 'react';
-import {Platform} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import {Home} from '../pages/Home';
@@ -9,15 +8,11 @@ import colors from '../styles/colors';
 
 const AppTab = createBottomTabNavigator();
 
-const AuthRoutes = () => {
+export function AppRoutes() {
   return (
     <AppTab.Navigator
       screenOptions={{
         tabBarActiveTintColor: colors.purple,
-      }}
-      sceneContainerStyle={{
-        paddingVertical: Platform.OS === 'ios' ? 25 : 0,
-        height: 95,
       }}>
       <AppTab.Screen
         name="Home"
@@ -38,6 +33,4 @@ const AuthRoutes = () => {
       />
     </AppTab.Navigator>
   );
-};
-
-export default AuthRoutes;
+}

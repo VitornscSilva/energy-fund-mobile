@@ -40,7 +40,7 @@ export function Login(): JSX.Element {
           abortEarly: false,
         });
 
-        navigation.navigate('Home');
+        navigation.navigate('App');
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
