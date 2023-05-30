@@ -9,7 +9,7 @@ export const Container = styled(RectButton)`
   height: 105px;
   background: ${colors.purple};
   border-radius: 10px;
-  margin: 20px 0;
+  margin: 10px 0;
   padding: 20px 10px 20px 20px;
 
   flex-direction: row;
