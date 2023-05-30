@@ -8,7 +8,18 @@ import {
   InfoStatsTitle,
 } from './styles';
 
-export function InfoStats(): JSX.Element {
+interface InfoStatsProps {
+  infoStats?: {
+    aum?: string;
+    issueData?: string;
+    vintageRange?: string;
+    ter?: string;
+    priceAtClose?: string;
+    priceAtOpen?: string;
+  };
+}
+
+export function InfoStats({infoStats}: InfoStatsProps): JSX.Element {
   return (
     <InfoStatsContainer>
       <InfoStatsTitle>Info & Stats</InfoStatsTitle>
@@ -17,29 +28,29 @@ export function InfoStats(): JSX.Element {
         <InfoStatsContentSection>
           <InfoStatsItem>
             <InfoStatsItemText type="title">AUM ⓘ</InfoStatsItemText>
-            <InfoStatsItemText>$430.88m</InfoStatsItemText>
+            <InfoStatsItemText>{infoStats?.aum}</InfoStatsItemText>
           </InfoStatsItem>
           <InfoStatsItem>
             <InfoStatsItemText type="title">Vintage Range ⓘ</InfoStatsItemText>
-            <InfoStatsItemText>2019 – 2023</InfoStatsItemText>
+            <InfoStatsItemText>{infoStats?.vintageRange}</InfoStatsItemText>
           </InfoStatsItem>
           <InfoStatsItem>
             <InfoStatsItemText type="title">Price at Close ⓘ</InfoStatsItemText>
-            <InfoStatsItemText>$17.68</InfoStatsItemText>
+            <InfoStatsItemText>{infoStats?.priceAtClose}</InfoStatsItemText>
           </InfoStatsItem>
         </InfoStatsContentSection>
         <InfoStatsContentSection>
           <InfoStatsItem>
             <InfoStatsItemText type="title">Issue Date ⓘ</InfoStatsItemText>
-            <InfoStatsItemText>18/04/2022</InfoStatsItemText>
+            <InfoStatsItemText>{infoStats?.issueData}</InfoStatsItemText>
           </InfoStatsItem>
           <InfoStatsItem>
             <InfoStatsItemText type="title">TER ⓘ</InfoStatsItemText>
-            <InfoStatsItemText>0.15%</InfoStatsItemText>
+            <InfoStatsItemText>{infoStats?.ter}%</InfoStatsItemText>
           </InfoStatsItem>
           <InfoStatsItem>
             <InfoStatsItemText type="title">Price at Open ⓘ</InfoStatsItemText>
-            <InfoStatsItemText>$17.74</InfoStatsItemText>
+            <InfoStatsItemText>{infoStats?.priceAtOpen}</InfoStatsItemText>
           </InfoStatsItem>
         </InfoStatsContentSection>
       </InfoStatsContent>

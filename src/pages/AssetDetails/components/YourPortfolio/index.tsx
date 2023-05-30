@@ -2,6 +2,7 @@ import React from 'react';
 import {Image, Text} from 'react-native';
 import {Button} from '../../../../components/Button';
 import colors from '../../../../styles/colors';
+import {compareLastPurchase} from '../../../../utils/compareLastPurchase';
 import {
   InfoStatsContainer,
   ActionButton,
@@ -20,7 +21,17 @@ import {
 const PortfolioIcon = require('../../../../assets/portfolio-icon.png');
 const UpIcon = require('../../../../assets/up.png');
 
-export function YourPortfolio(): JSX.Element {
+interface YourPortoflioProps {
+  portfolio: {
+    credits: number;
+    amount: string;
+    lastPurchase: string;
+    increasement: number;
+    retiredCredits?: number;
+  };
+}
+
+export function YourPortfolio({portfolio}: YourPortoflioProps): JSX.Element {
   return (
     <InfoStatsContainer>
       <YourPortfolioTitleContainer>
@@ -30,15 +41,19 @@ export function YourPortfolio(): JSX.Element {
 
       <YourPortfolioContent>
         <YourPortfolioContentItem>
-          <YourPortfolioContentTopText>18 credits</YourPortfolioContentTopText>
+          <YourPortfolioContentTopText>
+            {portfolio?.credits} credits
+          </YourPortfolioContentTopText>
           <YourPortfolioContentBottomText color={colors.green}>
-            <Image source={UpIcon} /> 8.41%
+            <Image source={UpIcon} /> {portfolio?.increasement}%
           </YourPortfolioContentBottomText>
         </YourPortfolioContentItem>
         <YourPortfolioContentItem>
-          <YourPortfolioContentTopText>$328.14</YourPortfolioContentTopText>
+          <YourPortfolioContentTopText>
+            {portfolio?.amount}
+          </YourPortfolioContentTopText>
           <YourPortfolioContentBottomText>
-            Last purchase 28d ago
+            Last purchase {compareLastPurchase(portfolio?.lastPurchase)}d ago
           </YourPortfolioContentBottomText>
         </YourPortfolioContentItem>
       </YourPortfolioContent>
@@ -49,7 +64,10 @@ export function YourPortfolio(): JSX.Element {
       </ActionsContainer>
 
       <InfoContainer>
-        <InfoText>You’ve previously retired 28 credits of this asset</InfoText>
+        <InfoText>
+          You’ve previously retired {portfolio?.retiredCredits ?? 0} credits of
+          this asset
+        </InfoText>
 
         <InfoContent>
           <InfoText>
