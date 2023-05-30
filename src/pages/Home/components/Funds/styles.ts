@@ -33,7 +33,7 @@ export const Title = styled.Text`
   line-height: 23px;
 `;
 
-export const FundCardContainer = styled.View`
+export const FundCardContainer = styled.TouchableOpacity`
   background: ${colors.white};
   border-color: ${colors.border_color};
   border-width: 1px;

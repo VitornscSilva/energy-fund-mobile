@@ -25,7 +25,15 @@ export function Funds() {
       <ScrollView
         horizontal
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{width: '100%', height: 160, gap: 15}}>
+        showsHorizontalScrollIndicator={false}
+        style={{
+          paddingRight: 20,
+          paddingBottom: 20,
+        }}
+        contentContainerStyle={{
+          gap: 15,
+          paddingRight: 20,
+        }}>
         <FundCardContainer>
           <Image source={WindIcon} />
           <FundCardText type="title">Wind Fund</FundCardText>
