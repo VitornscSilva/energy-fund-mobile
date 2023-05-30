@@ -11,4 +11,6 @@ export default {
 
   text_light: '#A0A0A0',
   text_dark: '#000000',
+
+  red: '#c53030',
 };
