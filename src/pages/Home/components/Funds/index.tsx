@@ -3,6 +3,7 @@ import {ScrollView} from 'react-native-gesture-handler';
 import {Image, View} from 'react-native';
 import {LineChart} from 'react-native-svg-charts';
 import * as shape from 'd3-shape';
+import {useNavigation} from '@react-navigation/native';
 
 import {Container, FundCardContainer, FundCardText, Title} from './styles';
 import colors from '../../../../styles/colors';
@@ -19,6 +20,8 @@ export function Funds() {
   const upData = [20, 180, 100, 140, 35, 25, 45, 30, 60];
   const downData = data.reverse();
 
+  const navigation = useNavigation();
+
   return (
     <Container>
       <Title>Funds</Title>
@@ -34,7 +37,7 @@ export function Funds() {
           gap: 15,
           paddingRight: 20,
         }}>
-        <FundCardContainer>
+        <FundCardContainer onPress={() => navigation.navigate('AssetDetails')}>
           <Image source={WindIcon} />
           <FundCardText type="title">Wind Fund</FundCardText>
           <LineChart
