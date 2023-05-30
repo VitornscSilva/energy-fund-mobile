@@ -6235,6 +6235,13 @@ react-native-svg-charts@^5.4.0:
     d3-shape "^1.0.6"
     prop-types "^15.6.0"
 
+react-native-svg-uri@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/react-native-svg-uri/-/react-native-svg-uri-1.2.3.tgz#2f67f30564068a0fee68a751845332a5185a1aab"
+  integrity sha512-yECSYs6KgX8XZj0IV3Z2fTOkldmtnG1dEDNoRXvJjPnQPTEzQ2VS1NXIgxukuGSN2jourVOvKLhhRo75QmRTaw==
+  dependencies:
+    xmldom "^0.1.22"
+
 react-native-svg@^13.9.0:
   version "13.9.0"
   resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-13.9.0.tgz#8df8a690dd00362601f074dec5d3a86dd0f99c7f"
@@ -7452,6 +7459,11 @@ ws@^7, ws@^7.5.1:
   version "7.5.9"
   resolved "https://registry.yarnpkg.com/ws/-/ws-7.5.9.tgz#54fa7db29f4c7cec68b1ddd3a89de099942bb591"
   integrity sha512-F+P9Jil7UiSKSkppIiD94dN07AwvFixvLIj1Og1Rl9GGMuNipJnV9JzjD6XuqmAeiswGvUmNLjr5cFuXwNS77Q==
+
+xmldom@^0.1.22:
+  version "0.1.31"
+  resolved "https://registry.yarnpkg.com/xmldom/-/xmldom-0.1.31.tgz#b76c9a1bd9f0a9737e5a72dc37231cf38375e2ff"
+  integrity sha512-yS2uJflVQs6n+CyjHoaBmVSqIDevTAWrzMmjG1Gc7h1qQ7uVozNhEPJAwZXWyGQ/Gafo3fCwrcaokezLPupVyQ==
 
 xtend@~4.0.1:
   version "4.0.2"
