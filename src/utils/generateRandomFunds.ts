@@ -11,6 +11,7 @@ const generateRandomDate = () => {
 };
 
 const generateRandomFund = (name: string) => {
+  const abbrTermination = 'ND';
   const randomPrice = Math.floor(Math.random() * 1000) + 1;
   const randomIncrease = Math.floor(Math.random() * 100);
   const randomChartData = Array.from(
@@ -23,10 +24,11 @@ const generateRandomFund = (name: string) => {
     randomChartData[randomChartData.length - 1] >=
     randomChartData[randomChartData.length - 2];
 
-  const abbreviation = name
-    .split(' ')
-    .map(word => word.charAt(0))
-    .join('');
+  const abbreviation =
+    name
+      .split(' ')
+      .map(word => word.charAt(0))
+      .join('') + abbrTermination;
 
   return {
     name,
