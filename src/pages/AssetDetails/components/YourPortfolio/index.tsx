@@ -1,5 +1,5 @@
-import React from 'react';
-import {Image, Text} from 'react-native';
+import React, {useMemo} from 'react';
+import {Image} from 'react-native';
 import {Button} from '../../../../components/Button';
 import colors from '../../../../styles/colors';
 import {compareLastPurchase} from '../../../../utils/compareLastPurchase';
@@ -20,7 +20,7 @@ import {
 
 const PortfolioIcon = require('../../../../assets/portfolio-icon.png');
 const UpIcon = require('../../../../assets/up.png');
-
+const DownIcon = require('../../../../assets/down.png');
 interface YourPortoflioProps {
   portfolio: {
     credits: number;
@@ -28,10 +28,25 @@ interface YourPortoflioProps {
     lastPurchase: string;
     increasement: number;
     retiredCredits?: number;
+    isPositive?: boolean;
   };
 }
 
 export function YourPortfolio({portfolio}: YourPortoflioProps): JSX.Element {
+  const color = useMemo(() => {
+    if (!portfolio?.isPositive) {
+      return colors.red;
+    }
+    return colors.green;
+  }, [portfolio]);
+
+  const ArrowIcon = useMemo(() => {
+    if (!portfolio?.isPositive) {
+      return DownIcon;
+    }
+    return UpIcon;
+  }, [portfolio]);
+
   return (
     <InfoStatsContainer>
       <YourPortfolioTitleContainer>
@@ -44,8 +59,8 @@ export function YourPortfolio({portfolio}: YourPortoflioProps): JSX.Element {
           <YourPortfolioContentTopText>
             {portfolio?.credits} credits
           </YourPortfolioContentTopText>
-          <YourPortfolioContentBottomText color={colors.green}>
-            <Image source={UpIcon} /> {portfolio?.increasement}%
+          <YourPortfolioContentBottomText color={color}>
+            <Image source={ArrowIcon} /> {portfolio?.increasement}%
           </YourPortfolioContentBottomText>
         </YourPortfolioContentItem>
         <YourPortfolioContentItem>

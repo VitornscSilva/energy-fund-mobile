@@ -1,31 +1,23 @@
+import {useRoute} from '@react-navigation/native';
 import React from 'react';
-import {View, Text, Image} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 
-import colors from '../../styles/colors';
 import {InfoStats} from './components/InfoStats';
+import {TopInfo} from './components/TopInfo';
 import {YourPortfolio} from './components/YourPortfolio';
 
 export function AssetDetails(): JSX.Element {
+  const route = useRoute();
+
+  const {fund} = route.params;
+
   return (
     <ScrollView>
-      <View style={{paddingHorizontal: 20, paddingVertical: 26}}>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            marginBottom: 4,
-          }}>
-          <Text style={{fontSize: 24, fontWeight: 600}}>$18.23</Text>
-          <Text style={{fontSize: 24, fontWeight: 600}}>2023</Text>
-        </View>
-        <Text style={{color: colors.green}}>
-          <Image source={require('../../assets/up.png')} /> 3.51% ($1.21)
-        </Text>
-      </View>
-
-      <InfoStats />
-      <YourPortfolio />
+      <TopInfo fund={fund} />
+      <InfoStats infoStats={fund?.infoStats} />
+      <YourPortfolio
+        portfolio={{...fund?.portfolio, isPositive: fund?.isPositive}}
+      />
     </ScrollView>
   );
 }
