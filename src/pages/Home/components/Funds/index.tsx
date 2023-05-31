@@ -82,6 +82,7 @@ export function Funds({funds}: FundsProps) {
         }}>
         {funds?.map(fund => (
           <FundCardContainer
+            key={fund?.abbr}
             onPress={() => navigation.navigate('AssetDetails', {fund})}>
             <Image source={FundsIcons[fund?.name]} />
             <FundCardText type="title">{fund?.name}</FundCardText>

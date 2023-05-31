@@ -7,6 +7,7 @@ export default {
   background: '#FFFFFF',
 
   gray: '#F4F4F4',
+  gray_dark: '#808080',
   white: '#FFFFFF',
 
   text_light: '#A0A0A0',
