@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/core';
-import React, {useCallback, useRef} from 'react';
+import React, {useCallback, useRef, useState} from 'react';
 import {View, KeyboardAvoidingView, Platform} from 'react-native';
 import {ScrollView, TextInput} from 'react-native-gesture-handler';
 import {useDispatch} from 'react-redux';
@@ -20,8 +20,10 @@ interface SignUpFormData {
   email: string;
   password: string;
 }
+const EyeIcon = require('../../assets/eye.png');
 
 export function SignUp(): JSX.Element {
+  const [isPasswordVisible, setIsPasswordVisibel] = useState(false);
   const formRef = useRef<FormHandles>(null);
   const lastNameInputRef = useRef<TextInput>(null);
   const emailInputRef = useRef<TextInput>(null);
@@ -116,7 +118,7 @@ export function SignUp(): JSX.Element {
               />
               <CustomInput
                 ref={passwordInputRef}
-                secureTextEntry
+                secureTextEntry={!isPasswordVisible}
                 returnKeyType="send"
                 name="password"
                 label="Password"
@@ -124,6 +126,8 @@ export function SignUp(): JSX.Element {
                 onSubmitEditing={() => {
                   formRef.current?.submitForm();
                 }}
+                icon={EyeIcon}
+                onPress={() => setIsPasswordVisibel(prevState => !prevState)}
               />
 
               <Button

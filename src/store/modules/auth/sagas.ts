@@ -17,6 +17,7 @@ export function* signIn() {
 
 export function* signUp() {
   try {
+    Alert.alert('Registration successful!', 'To access the App, login!');
     navigate('Login');
   } catch (err) {
     Alert.alert('Error on register', 'Verify your data');

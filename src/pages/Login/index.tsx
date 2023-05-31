@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/core';
-import React, {useCallback, useRef} from 'react';
+import React, {useCallback, useRef, useState} from 'react';
 import {View, KeyboardAvoidingView, Platform} from 'react-native';
 import {ScrollView, TextInput} from 'react-native-gesture-handler';
 import {Form} from '@unform/mobile';
@@ -19,7 +19,10 @@ interface SignInFormData {
   password: string;
 }
 
+const EyeIcon = require('../../assets/eye.png');
+
 export function Login(): JSX.Element {
+  const [isPasswordVisible, setIsPasswordVisibel] = useState(false);
   const formRef = useRef<FormHandles>(null);
   const passwordInputRef = useRef<TextInput>(null);
 
@@ -86,7 +89,7 @@ export function Login(): JSX.Element {
               />
               <CustomInput
                 ref={passwordInputRef}
-                secureTextEntry
+                secureTextEntry={!isPasswordVisible}
                 returnKeyType="send"
                 name="password"
                 label="Password"
@@ -94,6 +97,8 @@ export function Login(): JSX.Element {
                 onSubmitEditing={() => {
                   formRef.current?.submitForm();
                 }}
+                icon={EyeIcon}
+                onPress={() => setIsPasswordVisibel(prevState => !prevState)}
               />
 
               <Button

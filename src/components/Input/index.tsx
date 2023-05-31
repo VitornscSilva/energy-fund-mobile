@@ -8,6 +8,7 @@ import React, {
   useState,
 } from 'react';
 import {useField} from '@unform/core';
+import {Image, TouchableOpacity} from 'react-native';
 
 import {
   Container,
@@ -27,14 +28,15 @@ interface InputRef {
 interface CustomInputProps {
   name: string;
   label: string;
-  icon?: string;
+  icon?: SVGElement;
+  onPress?: () => void;
   [rest: string]: any;
 }
 
 const CustomInput: FC<CustomInputProps> = forwardRef<
   InputRef,
   CustomInputProps
->(({label, name, ...rest}, ref) => {
+>(({label, name, icon, onPress, ...rest}, ref) => {
   const inputElementRef = useRef<any>(null);
 
   const {registerField, defaultValue = '', fieldName, error} = useField(name);
@@ -78,6 +80,11 @@ const CustomInput: FC<CustomInputProps> = forwardRef<
           }}
           {...rest}
         />
+        {icon && (
+          <TouchableOpacity onPress={onPress}>
+            <Image source={icon} />
+          </TouchableOpacity>
+        )}
       </TextInputContainer>
     </Container>
   );
