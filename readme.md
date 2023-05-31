@@ -1,6 +1,6 @@
 # Energy Funds App
 
-This is a React Native app that allows users to explore and view information about different types of energy funds. The app is designed to work on both Android and iOS platforms and utilizes Redux for state management. It follows the example layout provided below and uses mocked data and graphics without the need for a backend or database.
+This is a React Native app that allows users to explore and view information about different types of energy funds. The app is designed to work on both Android and iOS platforms and utilizes Redux for state management.
 
 ## Features
 
