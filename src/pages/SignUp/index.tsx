@@ -23,6 +23,8 @@ interface SignUpFormData {
 
 export function SignUp(): JSX.Element {
   const formRef = useRef<FormHandles>(null);
+  const lastNameInputRef = useRef<TextInput>(null);
+  const emailInputRef = useRef<TextInput>(null);
   const passwordInputRef = useRef<TextInput>(null);
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -83,22 +85,24 @@ export function SignUp(): JSX.Element {
                 label="First Name"
                 placeholder="Enter your first name"
                 onSubmitEditing={() => {
-                  passwordInputRef.current?.focus();
+                  lastNameInputRef.current?.focus();
                 }}
               />
 
               <CustomInput
+                ref={lastNameInputRef}
                 autoCorrect={false}
                 returnKeyType="next"
                 name="lastName"
                 label="Last Name"
                 placeholder="Enter your last name"
                 onSubmitEditing={() => {
-                  passwordInputRef.current?.focus();
+                  emailInputRef.current?.focus();
                 }}
               />
 
               <CustomInput
+                ref={emailInputRef}
                 autoCorrect={false}
                 autoCapitalize="none"
                 keyboardType="email-address"
