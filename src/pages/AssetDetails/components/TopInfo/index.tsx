@@ -47,13 +47,13 @@ export function TopInfo({fund}: TopInfoProps): JSX.Element {
         </TopContentColoredText>
       </TopContainer>
       <LineChart
-        style={{flex: 1, width: '100%', height: 120}}
+        style={{flex: 1, width: '100%', height: 150}}
         data={fund?.chartData}
         svg={{
           stroke: color,
           strokeWidth: 1.5,
         }}
-        contentInset={{top: 5, bottom: 15}}
+        contentInset={{top: 25, bottom: 15}}
         curve={shape.curveNatural}
       />
     </Container>
