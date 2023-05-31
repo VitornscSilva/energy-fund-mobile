@@ -51,7 +51,6 @@ export function AppRoutes() {
         name="Trade"
         component={Trade}
         options={{
-          headerShown: false,
           tabBarIcon: ({size, color}) => (
             <TabIcon size={size} color={color} icon={TradeIcon} />
           ),
@@ -62,7 +61,6 @@ export function AppRoutes() {
         name="Portfolio"
         component={Portfolio}
         options={{
-          headerShown: false,
           tabBarIcon: ({size, color}) => (
             <TabIcon size={size} color={color} icon={PortfolioIcon} />
           ),
